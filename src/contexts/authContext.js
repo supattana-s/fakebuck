@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import * as authService from "../api/authApi";
-import { addAccessToken } from "../utils/localStorage";
+import { addAccessToken, removeAccessToken } from "../utils/localStorage";
 
 const AuthContext = createContext();
 
@@ -20,8 +20,13 @@ function AuthContextProvider({ children }) {
         addAccessToken(res.data.token);
     };
 
+    const logout = () => {
+        setUser(null);
+        removeAccessToken();
+    };
+
     return (
-        <AuthContext.Provider value={{ user, register, login }}>
+        <AuthContext.Provider value={{ user, register, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
