@@ -3,6 +3,9 @@ import { useAuth } from "../contexts/AuthContext";
 
 import LoginPage from "../pages/LoginPage";
 import PostPage from "../pages/PostPage";
+import FriendPage from "../pages/FriendPage";
+import ProfilePage from "../pages/ProfilePage";
+import Header from "../layouts/header/Header";
 
 function Router() {
     const { user } = useAuth();
@@ -10,7 +13,9 @@ function Router() {
         <Routes>
             {user ? (
                 <>
-                    <Route path="/" element={<PostPage />} />
+                    <Route path="/" element={<Header />} />
+                    <Route path="/friend" element={<FriendPage />} />
+                    <Route path="/profilr" element={<ProfilePage />} />
                 </>
             ) : (
                 <>
