@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 import LoginPage from "../pages/LoginPage";
@@ -20,6 +20,7 @@ function Router() {
             ) : (
                 <>
                     <Route path="/" element={<LoginPage />} />
+                    <Route path="*" element={<Navigate to="/" />} />
                 </>
             )}
         </Routes>

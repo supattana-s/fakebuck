@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/ui/Avatar";
 import { useAuth } from "../../contexts/AuthContext";
 
-function DropdownMenu({ open }) {
+function DropdownMenu({ open, onClose }) {
     const {
         logout,
         user: { profileImage, firstName, lastName },
@@ -18,6 +18,7 @@ function DropdownMenu({ open }) {
                 <Link
                     to="/profile"
                     className="dropdown-item p-2 d-flex align-items-center gap-3 hover-bg-neutral-100 hover-rounded-lg"
+                    onClick={onClose}
                 >
                     <Avatar src={profileImage} size="60" />
                     <div className="d-flex flex-column">
