@@ -1,5 +1,4 @@
 import axios from "../config/axios";
-import { getAccessToken } from "../utils/localStorage";
 
 export const register = (input) => axios.post("/auth/register", input);
 
