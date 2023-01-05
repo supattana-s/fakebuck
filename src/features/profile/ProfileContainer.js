@@ -7,9 +7,11 @@ import ProfileCover from "./ProfileCover";
 import ProfileInfo from "./ProfileInfo";
 import * as userService from "../../api/userApi";
 import {
+    FRIEND_STATUS_ACCEPTER,
     FRIEND_STATUS_ANNONYMOUS,
     FRIEND_STATUS_FRIEND,
     FRIEND_STATUS_ME,
+    FRIEND_STATUS_REQUESTER,
 } from "../../config/constant";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -53,6 +55,8 @@ function ProfileContainer() {
                 friends={friends}
                 isFriend={statusWithMe === FRIEND_STATUS_FRIEND}
                 isAnonymous={statusWithMe === FRIEND_STATUS_ANNONYMOUS}
+                isRequester={statusWithMe === FRIEND_STATUS_REQUESTER}
+                isAccepter={statusWithMe === FRIEND_STATUS_ACCEPTER}
             />
         </div>
     );

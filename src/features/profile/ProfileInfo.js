@@ -8,6 +8,8 @@ function ProfileInfo({
     friends,
     isFriend,
     isAnonymous,
+    isRequester,
+    isAccepter,
 }) {
     return (
         <div className="d-flex flex-column flex-md-row align-items-center align-items-md-stretch mx-auto px-3 space-x-4 max-w-266">
@@ -46,6 +48,21 @@ function ProfileInfo({
                     <button className="btn btn-gray-200">
                         <i className="fa-solid fa-user-plus" /> Add Friend
                     </button>
+                )}
+                {isRequester && (
+                    <button className="btn btn-gray-200">
+                        <i className="fa-solid fa-user-xmark" /> Cancel Request
+                    </button>
+                )}
+                {isAccepter && (
+                    <>
+                        <button className="btn btn-gray-200">
+                            <i className="fa-solid fa-user-check" /> Accept
+                        </button>
+                        <button className="btn btn-gray-200 ms-3">
+                            <i className="fa-solid fa-user-xmark" /> Reject
+                        </button>
+                    </>
                 )}
             </div>
         </div>
