@@ -6,6 +6,8 @@ function ProfileInfo({
     isMe,
     user: { profileImage, firstName, lastName },
     friends,
+    isFriend,
+    isAnonymous,
 }) {
     return (
         <div className="d-flex flex-column flex-md-row align-items-center align-items-md-stretch mx-auto px-3 space-x-4 max-w-266">
@@ -35,6 +37,16 @@ function ProfileInfo({
 
             <div className="mb-3 align-self-md-end">
                 {isMe && <ProfileEdit />}
+                {isFriend && (
+                    <button className="btn btn-gray-200">
+                        <i className="fa-solid fa-user-xmark" /> Unfriend
+                    </button>
+                )}
+                {isAnonymous && (
+                    <button className="btn btn-gray-200">
+                        <i className="fa-solid fa-user-plus" /> Add Friend
+                    </button>
+                )}
             </div>
         </div>
     );
