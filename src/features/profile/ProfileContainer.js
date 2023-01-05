@@ -43,6 +43,19 @@ function ProfileContainer() {
         fetchUserFriends();
     }, [id, me]);
 
+    const changeStatusWithMe = (nextStatus) => {
+        setStatusWithMe(nextStatus);
+    };
+
+    const deleteFriend = () => {
+        const nextFriends = friends.filter((item) => item.id !== me.id);
+        setFriends(nextFriends);
+    };
+
+    const createFriend = () => {
+        setFriends([...friends, me]);
+    };
+
     return (
         <div
             className="shadow-sm pb-2"
@@ -57,6 +70,9 @@ function ProfileContainer() {
                 isAnonymous={statusWithMe === FRIEND_STATUS_ANNONYMOUS}
                 isRequester={statusWithMe === FRIEND_STATUS_REQUESTER}
                 isAccepter={statusWithMe === FRIEND_STATUS_ACCEPTER}
+                changeStatusWithMe={changeStatusWithMe}
+                deleteFriend={deleteFriend}
+                createFriend={createFriend}
             />
         </div>
     );
