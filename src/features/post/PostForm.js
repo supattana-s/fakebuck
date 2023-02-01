@@ -1,6 +1,8 @@
-import axios from "axios";
 import { useRef, useState } from "react";
+import { toast } from "react-toastify";
+
 import AddPhotoButton from "./AddPhotoButton";
+import { useLoading } from "../../contexts/LoadingContext";
 
 function PostForm({ onSubmit }) {
     const [title, setTitle] = useState("");
@@ -8,9 +10,38 @@ function PostForm({ onSubmit }) {
 
     const fileEl = useRef();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit();
+    const { startLoading, stopLoading } = useLoading();
+
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            const formData = new FormData();
+
+            if (!title && !image) {
+                return toast.error("title or image is require");
+            }
+
+            if (title) {
+                formData.append("title", title);
+            }
+
+            if (image) {
+                formData.append("image", image);
+            }
+
+            startLoading();
+
+            await onSubmit(formData);
+
+            setTitle("");
+            setImage(null);
+            toast.success("post created");
+        } catch (err) {
+            console.log(err);
+            toast.error(err.response?.data.message);
+        } finally {
+            stopLoading();
+        }
     };
 
     return (
@@ -60,10 +91,7 @@ function PostForm({ onSubmit }) {
                 }}
             />
             <div className="pt-3">
-                <button
-                    type="button"
-                    className="btn btn-primary w-100 fw-bold text-3.5 h-9"
-                >
+                <button className="btn btn-primary w-100 fw-bold text-3.5 h-9">
                     Post
                 </button>
             </div>

@@ -6,12 +6,17 @@ import Avatar from "../../components/ui/Avatar";
 import { useAuth } from "../../contexts/AuthContext";
 import PostForm from "./PostForm";
 
-function PostCreateToggle() {
+function PostCreateToggle({ createPost }) {
     const {
         user: { id, firstName, profileImage },
     } = useAuth();
 
     const [isOpen, setIsOpen] = useState(false);
+
+    const savePost = async (input) => {
+        await createPost(input);
+        setIsOpen(false);
+    };
 
     return (
         <div className="border bg-white shadow-sm px-3 rounded-lg tw-py-3">
@@ -31,7 +36,7 @@ function PostCreateToggle() {
                 open={isOpen}
                 onClose={() => setIsOpen(false)}
             >
-                <PostForm onSubmit={() => {}} />
+                <PostForm onSubmit={savePost} />
             </Modal>
         </div>
     );
