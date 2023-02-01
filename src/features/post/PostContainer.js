@@ -17,18 +17,6 @@ function PostContainer() {
 
     const { startLoading, stopLoading } = useLoading();
 
-    // const fetchPost = useCallback(async () => {
-    //     try {
-    //         // startLoading();
-    //         const res = await postService.getUserPosts(id, "friend");
-    //         setPosts(res.data.posts);
-    //     } catch (err) {
-    //         console.log(err);
-    //     } finally {
-    //         // stopLoading();
-    //     }
-    // }, [id]);
-
     useEffect(() => {
         const fetchPost = async () => {
             try {
@@ -42,7 +30,7 @@ function PostContainer() {
             }
         };
         fetchPost();
-    }, []);
+    }, [id, startLoading, stopLoading]);
 
     const createPost = async (input) => {
         const res = await postService.createPost(input);

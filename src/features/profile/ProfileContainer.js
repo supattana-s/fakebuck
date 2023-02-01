@@ -41,7 +41,7 @@ function ProfileContainer() {
             }
         };
         fetchUserFriends();
-    }, [me]);
+    }, [id, me, startLoading, stopLoading]);
 
     const changeStatusWithMe = (nextStatus) => {
         setStatusWithMe(nextStatus);
