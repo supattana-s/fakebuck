@@ -65,7 +65,7 @@ function ProfileInfo({
             toast.success("success accept friend");
         } catch (err) {
             console.log(err);
-            toast.error(err.respons?.data.message);
+            toast.error(err.response?.data.message);
         } finally {
             stopLoading();
         }
@@ -116,7 +116,10 @@ function ProfileInfo({
                     </button>
                 )}
                 {isRequester && (
-                    <button className="btn btn-gray-200">
+                    <button
+                        className="btn btn-gray-200"
+                        onClick={handleClickDelete}
+                    >
                         <i className="fa-solid fa-user-xmark" /> Cancel Request
                     </button>
                 )}
@@ -128,7 +131,10 @@ function ProfileInfo({
                         >
                             <i className="fa-solid fa-user-check" /> Accept
                         </button>
-                        <button className="btn btn-gray-200 ms-3">
+                        <button
+                            className="btn btn-gray-200 ms-3"
+                            onClick={handleClickDelete}
+                        >
                             <i className="fa-solid fa-user-xmark" /> Reject
                         </button>
                     </>
